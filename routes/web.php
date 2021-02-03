@@ -2,6 +2,6 @@
 
 Route::get('/', 'PagesController@root')->name('root');
 
-Auth::routes();
 
 
+Auth::routes(['verify' => true]);
