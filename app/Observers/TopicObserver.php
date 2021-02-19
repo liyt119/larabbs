@@ -25,6 +25,13 @@ class TopicObserver
             // @url https://learnku.com/laravel/t/14584/slug-has-bug?#reply76507
             if (trim($topic->slug) === 'edit') {
                 $topic->slug = 'edit-slug';
+              }
+        }
+
+        if ( ! $topic->slug) {
+
+            // 推送任务到队列
+            dispatch(new TranslateSlug($topic));
         }
     }
 }
