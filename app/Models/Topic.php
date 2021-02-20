@@ -11,6 +11,12 @@ class Topic extends Model
       return $this->hasMany(Reply::class);
     }
 
+    public function updateReplyCount()
+    {
+      $this->reply_count = $this->replies->count();
+      $this->save();
+    }
+
 
     //一个话题属于一个分类和用户
     public function category()

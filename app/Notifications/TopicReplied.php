@@ -11,7 +11,7 @@ use App\Models\Reply;
 class TopicReplied extends Notification
 {
     use Queueable;
-    use ShouldQueue;
+
 
     public $reply;
 
