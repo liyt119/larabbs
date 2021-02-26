@@ -17,6 +17,26 @@ class User extends Authenticatable
       notify as protected laravelNotify;
     }
 
+    public function setAvatarAttribute($path)
+    {
+      if(! \Str::startsWith($path,'http'))
+      {
+        $path = config('app.url') . "/uploads/images/avatars/$path";
+      }
+      $this->attributes['avatar'] = $path;
+    }
+
+
+    public function setPasswordAttribute($value)
+    {
+      if(strlen($value)!=60)
+      {
+        $value=bcrypt($value);
+      }
+
+      $this ->attributes['password'] = $value;
+    }
+
     public function markAsRead()
     {
       $this->notification_count = 0;
